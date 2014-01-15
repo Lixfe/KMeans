@@ -11,21 +11,21 @@ import java.util.ArrayList;
  */
 public class Variable {
 
-	protected ArrayList<Float> coordonnees;
+	protected ArrayList<Double> coordonnees;
 	
 	/**
 	 * Constructeur d'une instance de variable
 	 * @param coord : coordonnées de la variable
 	 */
-	public Variable(ArrayList<Float> coord){
+	public Variable(ArrayList<Double> coord){
 		coordonnees = coord;
 	}
 	
 	public Variable(Variable var){
-		coordonnees = new ArrayList<Float>(var.getCoordonnees());
+		coordonnees = new ArrayList<Double>(var.getCoordonnees());
 	}
 	
-	public ArrayList<Float> getCoordonnees(){
+	public ArrayList<Double> getCoordonnees(){
 		return this.coordonnees;
 	}
 	
