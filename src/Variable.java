@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 
+
 /**
  * Classe représentant une variable donnée.
  * La dimension de la variable est libre
@@ -18,6 +19,14 @@ public class Variable {
 	 */
 	public Variable(ArrayList<Float> coord){
 		coordonnees = coord;
+	}
+	
+	public Variable(Variable var){
+		coordonnees = new ArrayList<Float>(var.getCoordonnees());
+	}
+	
+	public ArrayList<Float> getCoordonnees(){
+		return this.coordonnees;
 	}
 	
 	
