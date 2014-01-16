@@ -23,6 +23,21 @@ public class ExceptionTailleVariables extends Exception {
 		this.code=codeRenvoye;
 	}
 	
-	//TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux
+	//Methodes
+	
+	/**
+	 * 
+	 */
+	public String getMessage(){
+		if (this.code==1){
+			return "Variables de dimension différentes !";
+		}
+		if (this.code==2){
+			return "Liste de variable trop courte !";
+		}
+		else {
+			return "erreur inconnue";
+		}
+	}
 		
 	}

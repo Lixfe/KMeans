@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import Exceptions.ExceptionTailleVariables;
 
 /**
  * Classe représentant un clustring, c'est à dire une liste de variable + la liste des cluster dans lesquelles ils sont distribués 
@@ -6,7 +7,7 @@ import java.util.ArrayList;
  * @author Raphaël
  *
  */
-public class Clustering {
+public class Clustering{
 
 	//Attributs
 	protected ArrayList<Variable> listeVariables; //liste de toutes les variables du problème
@@ -22,7 +23,7 @@ public class Clustering {
 	 * @param listevar
 	 * @param valeurK
 	 */
-	public Clustering (ArrayList<Variable> listevar, int valeurK) {
+	public Clustering (ArrayList<Variable> listevar, int valeurK)  throws ExceptionTailleVariables {
 		this.listeVariables = listevar ;
 		this.listeCluster = new ArrayList <Cluster>(valeurK) ;
 		
@@ -32,7 +33,7 @@ public class Clustering {
 		try {
 			if (listevar.size()<valeurK){
 				//lancer exception s'il y a moins de variables de K
-				//TODO créer une nouvelle exception pour ce cas
+				throw new ExceptionTailleVariables(2);
 			}
 		}
 		catch (){

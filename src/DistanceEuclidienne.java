@@ -18,7 +18,7 @@ public class DistanceEuclidienne extends Similarite {
 		
 		try {
 			if (n != b.coordonnees.size()) {
-				throw new ExceptionTailleVariables();
+				throw new ExceptionTailleVariables(1);
 			}
 			
 			//TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux 
@@ -32,7 +32,7 @@ public class DistanceEuclidienne extends Similarite {
 			
 		}
 		catch (ExceptionTailleVariables e){
-			System .out . println ("variables de tailles différentes");
+			System .out . println (e.getMessage());
 			return 0d ;
 		}
 	
