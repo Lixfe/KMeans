@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+
 import Exceptions.ExceptionTailleVariables;
 
 /**
@@ -36,11 +38,19 @@ public class Clustering{
 				throw new ExceptionTailleVariables(2);
 			}
 		}
-		catch (){
-			//renvoyer un message d'erreur
+		catch (ExceptionTailleVariables e){
+			System .out . println (e.getMessage());
+			return ;
 		}
 		
 		//mettre dans selection K variables choisies au hasard dans listevar, c'est possible car on vient de tester
+		Random random = new Random();
+		 for (int i = 0; i < valeurK; i++)
+		    {
+			 	// pour chaque i on ajoute à selectionHasard une variable choisie au hasard parmi listevar
+		        selectionHasard.add(listevar.get(random.nextInt(listevar.size()))); 
+		   
+		    }
 		
 		for (int i=0 ; i < valeurK ; i++){
 			//ajout d'un cluster avec pour centre la i-ème variable sélectionnée au hasrad ci-dessus
