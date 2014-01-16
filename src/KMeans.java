@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import Exceptions.ExceptionTailleVariables;
 
 public class KMeans {
 	
@@ -25,8 +26,9 @@ public class KMeans {
 	 * @param jeuDonnees : le tableau des variables auxquelles on applique l'algorithme
 	 * @return : un k-Clustering solution du problème
 	 */
-	public Clustering run(ArrayList<Variable> jeuDonnees){
+	public Clustering run(ArrayList<Variable> jeuDonnees) throws ExceptionTailleVariables {
 		
+		try {
 		//on crée un clustering, initialisé grâce au constructeur
 		Clustering solution = new Clustering(jeuDonnees, valeurK) ;
 		
@@ -39,7 +41,12 @@ public class KMeans {
 		
 		//on renvoie cette solution
 		return solution;
-		
+		}
+		catch (ExceptionTailleVariables e){
+			System .out . println (e.getMessage());
+			
+			return new Clustering(null, 0) ; 
+		}
 	};
 	
 	

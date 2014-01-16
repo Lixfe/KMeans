@@ -10,7 +10,7 @@ public class Test {
 		ArrayList<Double> coordV1 = new ArrayList<Double>();
 		coordV1.add(1.);
 		coordV1.add(1.);
-		Variable v1 = new Variable(coordV1);
+		Variable v1 = new Variable(coordV1); 
 		ArrayList<Double> coordV2 = new ArrayList<Double>();
 		coordV2.add(2.);
 		coordV2.add(2.);
@@ -37,6 +37,10 @@ public class Test {
 		
 		Clustering solutionClustering = new Clustering(listeVariable, 1);
 		solutionClustering.reallocation(sim);
+		
+		KMeans probleme = new KMeans(2, sim);
+		probleme.run(listeVariable);
+		
 		
 		
 	}

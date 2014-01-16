@@ -77,8 +77,8 @@ public class Clustering{
 	 * 
 	 * @param sim : similarité utilisée (par exemple distance euclidienne)
 	 */	 
-	public boolean reallocation(Similarite sim){
-		
+	public boolean reallocation(Similarite sim) throws ExceptionTailleVariables {
+		try {
 		//effacer les variables de chaque cluster
 		for (int i=0 ; i<this.listeCluster.size();i++){
 			this.listeCluster.get(i).listeVariablesCluster.clear();
@@ -101,7 +101,7 @@ public class Clustering{
 			this.listeCluster.get(indiceClusterProche).listeVariablesCluster.add(this.listeVariables.get(i));
 		}
 		
-		//reclalcule des centres des clusters, en regardant si l'un au moins a change :
+		//reclalcul des centres des clusters, en regardant si l'un au moins a change :
 		boolean changement = false ;
 		for (int i = 0 ; i<this.listeCluster.size() ; i++){
 			if (this.listeCluster.get(i).calculerCentre()){
@@ -110,5 +110,10 @@ public class Clustering{
 		}
 		
 		return changement;
+		}
+		catch (ExceptionTailleVariables e){
+			System .out . println (e.getMessage());
+			return false ; 
+		}
 	}
 }
