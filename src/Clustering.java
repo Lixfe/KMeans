@@ -62,17 +62,45 @@ public class Clustering{
 	//Méthodes
 	
 	/**
-	 * réalloue l'ensemble des variables de listeVariables dans le cluster le plus proche parmi ceux de listeCluster
+	 * réalloue chaque variable de listeVariables dans le cluster le plus proche parmi ceux de listeCluster
 	 * 
 	 * 2 étapes :
 	 * 	1) effacer les listeVariablesCluster de chaque cluster de la listeCluster
 	 * 		tout en gardant son centre intact (ce n'est pas un recentrage)
 	 * 	2) prendre une à une chaque variable de listeVariables et la copier dans 
 	 * 		la liste des variables du cluster le plus similaire
+	 * 	3) recalcule les centres des clusters grâce à la méthode recentrer de chaque cluster
 	 * 
 	 * @param sim : similarité utilisée (par exemple distance euclidienne)
 	 */	 
-	public void reallocation(Similarite sim){
+	public Clustering reallocation(Similarite sim){
 		
+		//effacer les variables de chaque cluster
+		for (int i=0 ; i<this.listeCluster.size();i++){
+			this.listeCluster.get(i).listeVariablesCluster.clear();
+		};
+		
+		//réattribution des variables :
+		//pour chaque variable...
+		for (int i=0 ; i<this.listeVariables.size() ; i++){
+			//...on cherche parmi les centres de cluster le plus similaire...
+			
+			int indiceClusterProche = 0 ;
+			for (int j=0 ; j<this.listeCluster.size() ; j++){
+				//pour chaque cluster on regarde si le centre est plus similaire à la variable considérée que le centre d'indice "indiceClusterProche"
+				if (sim.similarite(this.listeVariables.get(i), this.listeCluster.get(j).centre) > sim.similarite(this.listeVariables.get(i), this.listeCluster.get(indiceClusterProche).centre)){
+					indiceClusterProche=j;
+				}		
+			}
+			
+			//...et on place la variable dans ce cluster
+			this.listeCluster.get(indiceClusterProche).listeVariablesCluster.add(this.listeVariables.get(i));
+		}
+		
+		//reclalcule des centres des clusters :
+		for (int i = 0 ; i<this.listeCluster.size() ; i++){
+			this.listeCluster.get(i).calculerCentre();
+		}
+		return this;
 	}
 }
