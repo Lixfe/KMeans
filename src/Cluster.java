@@ -43,7 +43,7 @@ public class Cluster {
 			}
 		}
 		
-		if (this.centre.equals(coordNouveauCentre)){
+		if (this.centre.coordonnees.equals(coordNouveauCentre)){
 			System.out.println("calcul nouveau centre : aucun changement");
 			return false;
 		}

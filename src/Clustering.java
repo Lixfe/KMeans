@@ -78,11 +78,13 @@ public class Clustering{
 	 * @param sim : similarité utilisée (par exemple distance euclidienne)
 	 */	 
 	public boolean reallocation(Similarite sim) throws ExceptionTailleVariables {
+		System.out.println("début de la réallocation");
 		try {
 		//effacer les variables de chaque cluster
 		for (int i=0 ; i<this.listeCluster.size();i++){
 			this.listeCluster.get(i).listeVariablesCluster.clear();
 		};
+		System.out.println("variables effacees");
 		
 		//réattribution des variables :
 		//pour chaque variable...
@@ -100,16 +102,26 @@ public class Clustering{
 			//...et on place la variable dans ce cluster
 			this.listeCluster.get(indiceClusterProche).listeVariablesCluster.add(this.listeVariables.get(i));
 		}
+		System.out.println("variables reattribues");
 		
 		//reclalcul des centres des clusters, en regardant si l'un au moins a change :
 		boolean changement = false ;
 		for (int i = 0 ; i<this.listeCluster.size() ; i++){
+			System.out.println("recalcul du centre du cluster numero "+(i+1));
 			if (this.listeCluster.get(i).calculerCentre()){
 				changement = true ;
 			};
+			System.out.print("nouveau centre du cluster "+(i+1)+" : ");
+			for (int d=0 ; d<this.listeCluster.get(i).centre.coordonnees.size() ; d++){
+				System.out.print(this.listeCluster.get(i).centre.coordonnees.get(d)+" , ");
+			}
+			System.out.println("");
 		}
 		
+		System.out.println("resultat reallocation : il y a eu du changement ? "+changement);
+	
 		return changement;
+		
 		}
 		catch (ExceptionTailleVariables e){
 			System .out . println (e.getMessage());
