@@ -16,7 +16,11 @@ public class Cluster {
 		centre = new Variable(centreDepart);
 	}
 	
-	public void calculerCentre(){
+	/**reclacule le centre de gravité d'un cluster
+	 * renvoie vrai si la calcule a engendré des changements, faux si il n'a eu aucun effet
+	 * @return
+	 */
+	public boolean calculerCentre(){
 		
 		// TODO throws ExceptionTaillevaribles pour le cas où le variables ne sont pas toutes de même dimensions
 		
@@ -38,7 +42,17 @@ public class Cluster {
 				coordNouveauCentre.add(x);
 			}
 		}
-		this.centre = new Variable(coordNouveauCentre);
+		
+		if (this.centre.equals(coordNouveauCentre)){
+			System.out.println("calcul nouveau centre : aucun changement");
+			return false;
+		}
+		else{
+			this.centre = new Variable(coordNouveauCentre);
+			System.out.println("calcul nouveau centre : changement");
+			return true;
+		}
+		
 	}
 	
 	public void ajoutCluster(Variable var){

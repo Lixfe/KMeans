@@ -63,17 +63,21 @@ public class Clustering{
 	
 	/**
 	 * réalloue chaque variable de listeVariables dans le cluster le plus proche parmi ceux de listeCluster
+	 * renvoie vrai si la réallocation a engendré des changements, faux si elle n'a eu aucun effet
 	 * 
 	 * 2 étapes :
+	 * 
 	 * 	1) effacer les listeVariablesCluster de chaque cluster de la listeCluster
 	 * 		tout en gardant son centre intact (ce n'est pas un recentrage)
 	 * 	2) prendre une à une chaque variable de listeVariables et la copier dans 
 	 * 		la liste des variables du cluster le plus similaire
 	 * 	3) recalcule les centres des clusters grâce à la méthode recentrer de chaque cluster
+	 * 	4) si l'un au moins des clusters a changé de centre, alors il y a modification donc on renvoie VRAI
+	 * 	sinon on renvoie FAUX
 	 * 
 	 * @param sim : similarité utilisée (par exemple distance euclidienne)
 	 */	 
-	public Clustering reallocation(Similarite sim){
+	public boolean reallocation(Similarite sim){
 		
 		//effacer les variables de chaque cluster
 		for (int i=0 ; i<this.listeCluster.size();i++){
@@ -97,7 +101,8 @@ public class Clustering{
 			this.listeCluster.get(indiceClusterProche).listeVariablesCluster.add(this.listeVariables.get(i));
 		}
 		
-		//reclalcule des centres des clusters :
+		//reclalcule des centres des clusters, en regardant si l'un au moins a change :
+		boolean changment = false ;
 		for (int i = 0 ; i<this.listeCluster.size() ; i++){
 			this.listeCluster.get(i).calculerCentre();
 		}
