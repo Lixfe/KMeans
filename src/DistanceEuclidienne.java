@@ -9,6 +9,8 @@ import Exceptions.ExceptionTailleVariables;
  */
 public class DistanceEuclidienne extends Similarite {
 
+	//TODO en faire eun singleton ? 
+	
 	@Override
 	public double similarite(Variable a, Variable b) throws ExceptionTailleVariables {
 		int n = a.coordonnees.size() ;
