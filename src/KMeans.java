@@ -32,6 +32,14 @@ public class KMeans {
 		//on crée un clustering, initialisé grâce au constructeur
 		Clustering solution = new Clustering(jeuDonnees, valeurK) ;
 		
+		for (int i = 0 ; i<solution.listeCluster.size() ; i++){
+		System.out.print(" centre du cluster "+(i+1)+" : ");
+		for (int d=0 ; d<solution.listeCluster.get(i).centre.coordonnees.size() ; d++){
+			System.out.print(solution.listeCluster.get(i).centre.coordonnees.get(d)+" , ");
+		}
+		}
+		System.out.println("");		
+		
 		
 		while (solution.reallocation(fonctionSimilarite)){
 			//tant que la rallocation implique des changements, on ne sort pas de la boucle

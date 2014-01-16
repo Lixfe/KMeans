@@ -50,7 +50,7 @@ public class Test {
 
 		//test de création d'un kmeans
 		
-		KMeans probleme = new KMeans(2, sim);
+		KMeans probleme = new KMeans(1, sim);
 		System.out.println("kmeans créé");
 		probleme.run(listeVariable);
 		

@@ -38,7 +38,7 @@ public class Cluster {
 				for (Variable var : listeVariablesCluster) {
 					x = x+var.getCoordonnees().get(i);
 				}
-				x = x/centre.coordonnees.size();
+				x = x/listeVariablesCluster.size();
 				coordNouveauCentre.add(x);
 			}
 		}

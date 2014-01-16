@@ -9,6 +9,8 @@ package Exceptions;
  * 		par exemple lorsqu'on essaie de sélectionner K variables parmi une liste
  * 		qui en compte moins de K
  * 
+ *
+ * 
  * @author Raphaël
  *
  */

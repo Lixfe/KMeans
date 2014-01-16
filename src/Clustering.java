@@ -1,7 +1,9 @@
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
-import Exceptions.ExceptionTailleVariables;
+import Exceptions.*;
 
 /**
  * Classe représentant un clustring, c'est à dire une liste de variable + la liste des cluster dans lesquelles ils sont distribués 
@@ -33,23 +35,53 @@ public class Clustering{
 		ArrayList<Variable> selectionHasard = new ArrayList<Variable>(valeurK) ;
 		
 		try {
-			if (listevar.size()<valeurK){
-				//lancer exception s'il y a moins de variables de K
-				throw new ExceptionTailleVariables(2);
+			//test pour savoir s'il y a moins de variables distinctes dans listevar que valeurK
+			
+			if (listevar.isEmpty()) {throw new ExceptionTailleVariables(1);}; //s'il n'y a pas de variables, il n'yen a pas assez
+			
+			//calcul du nombre de valeur distinctesdans listevar
+			
+			int valeurDistinctes = 0 ; 
+			
+			for (int i=1 ; i<listevar.size() ; i++){//pour chaque variable, on regarde si elle est égale aux précédentes
+				boolean doublon = false ; //variable pour détecter si la i-ème variable a un doublon parmi les précédentes
+				for (int j=0 ; j<i ; j++ ){
+					if (listevar.get(i).equals(listevar.get(j))){
+						doublon = true;
+					}
+					
+				}
+				if (! doublon){valeurDistinctes++;};
 			}
+			
+			//si pas assez de valeur disctinctes, exception levée
+			if (valeurDistinctes<valeurK){throw new ExceptionTailleVariables(1);};
 		}
 		catch (ExceptionTailleVariables e){
 			System .out . println (e.getMessage());
-			return ;
+			
 		}
 		
 		//mettre dans selection K variables choisies au hasard dans listevar, c'est possible car on vient de tester
 		Random random = new Random();
 		 for (int i = 0; i < valeurK; i++)
 		    {
-			 	// pour chaque i on ajoute à selectionHasard une variable choisie au hasard parmi listevar
-		        selectionHasard.add(listevar.get(random.nextInt(listevar.size()))); 
-		   
+			 // pour chaque i choisit un nombre au hasard
+			 int nbaleatoire = random.nextInt(listevar.size());
+			 //et si la variable de cet indice est déjà présente dans la sélectin on tire un autre nombre ; on sait que la boucle finira grâce aux vérifications ci-dessus
+			 boolean doublon = true ; 
+			 while (doublon){
+				 doublon = false;
+				 if(i==0){doublon =false;}
+				 else
+				 	{for (int j=0 ; j<i ; j++){
+				 		if (selectionHasard.get(j).equals(listevar.get(nbaleatoire))){doublon=true;};
+				 	}
+				 }
+				 nbaleatoire = random.nextInt(listevar.size());
+			 }
+			 
+			 selectionHasard.add(listevar.get(nbaleatoire));
 		    }
 		
 		for (int i=0 ; i < valeurK ; i++){
@@ -94,7 +126,7 @@ public class Clustering{
 			int indiceClusterProche = 0 ;
 			for (int j=0 ; j<this.listeCluster.size() ; j++){
 				//pour chaque cluster on regarde si le centre est plus similaire à la variable considérée que le centre d'indice "indiceClusterProche"
-				if (sim.similarite(this.listeVariables.get(i), this.listeCluster.get(j).centre) > sim.similarite(this.listeVariables.get(i), this.listeCluster.get(indiceClusterProche).centre)){
+				if (sim.similarite(this.listeVariables.get(i), this.listeCluster.get(j).centre) < sim.similarite(this.listeVariables.get(i), this.listeCluster.get(indiceClusterProche).centre)){
 					indiceClusterProche=j;
 				}		
 			}
@@ -119,6 +151,10 @@ public class Clustering{
 		}
 		
 		System.out.println("resultat reallocation : il y a eu du changement ? "+changement);
+		Scanner reader = new Scanner(System.in);
+		
+		System.out.println("Entrer un nombre pour continuer");
+		int a = reader.nextInt();
 	
 		return changement;
 		
