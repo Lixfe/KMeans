@@ -102,10 +102,13 @@ public class Clustering{
 		}
 		
 		//reclalcule des centres des clusters, en regardant si l'un au moins a change :
-		boolean changment = false ;
+		boolean changement = false ;
 		for (int i = 0 ; i<this.listeCluster.size() ; i++){
-			this.listeCluster.get(i).calculerCentre();
+			if (this.listeCluster.get(i).calculerCentre()){
+				changement = true ;
+			};
 		}
-		return this;
+		
+		return changement;
 	}
 }
