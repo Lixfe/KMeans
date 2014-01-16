@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * Classe représentant un cluster avec sa liste de points
+ * Classe reprï¿½sentant un cluster avec sa liste de points
  * @author Felix
  *
  */
@@ -18,9 +18,12 @@ public class Cluster {
 	
 	public void calculerCentre(){
 		
+		// TODO throws ExceptionTaillevaribles pour le cas oÃ¹ le variables ne sont pas toutes de mÃªme dimensions
+		
+		
 		ArrayList<Double> coordNouveauCentre = new ArrayList<Double>();
 		
-		//Si le cluster ne contient aucun point, son centre de gravité est inchangé
+		//Si le cluster ne contient aucun point, son centre de gravitï¿½ est inchangï¿½
 		if (listeVariablesCluster.size() == 0)
 		{coordNouveauCentre = new ArrayList<Double>(centre.getCoordonnees());}
 	

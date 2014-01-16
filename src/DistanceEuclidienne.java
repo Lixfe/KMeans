@@ -19,11 +19,9 @@ public class DistanceEuclidienne extends Similarite {
 				throw new ExceptionTailleVariables();
 			}
 			
-			//@TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux 
-			
+			//TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux 
 			
 			//définition de la distance euclidienne : d²(i,i') = Somme(pour j=1..n) (Zij-Zi'j)²
-			
 			
 				for (int j = 0 ; j < n ; j++ ){
 					distanceCarre = distanceCarre + Math.pow( a.coordonnees.get(j)-b.coordonnees.get(j), 2);

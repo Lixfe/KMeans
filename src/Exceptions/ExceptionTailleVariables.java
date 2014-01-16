@@ -12,6 +12,6 @@ public class ExceptionTailleVariables extends Exception {
 	private static final long serialVersionUID = 1L;
 	public int n,m;
 	
-	//@TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux
+	//TODO faire un conctructeur de l'exception ExceptionTailleVariables avec comme arguments les deux entiers tailles des tableaux
 		
 	}
