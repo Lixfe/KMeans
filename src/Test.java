@@ -8,8 +8,8 @@ public class Test {
 	public static void main(String[] args) throws ExceptionTailleVariables {
 		// TODO Auto-generated method stub
 		ArrayList<Double> coordV1 = new ArrayList<Double>();
-		coordV1.add(1.);
-		coordV1.add(1.);
+		coordV1.add(0.);
+		coordV1.add(0.);
 		Variable v1 = new Variable(coordV1); 
 		ArrayList<Double> coordV2 = new ArrayList<Double>();
 		coordV2.add(2.);
@@ -48,14 +48,29 @@ public class Test {
 		solutionClustering.reallocation(sim);
 		}
 
-		//test de création d'un kmeans
+		/*test de création d'un kmeans
 		
 		KMeans probleme = new KMeans(1, sim);
 		System.out.println("kmeans créé");
 		probleme.run(listeVariable);
+		*/
 		
+		//deuxieme test
+		KMeans probleme2 = new KMeans(1, sim);
 		
+		ArrayList<Double> coordV3 = new ArrayList<Double>();
+		coordV3.add(4.);
+		coordV3.add(4.);
+		Variable v3 = new Variable(coordV3);
+		listeVariable.add(v3);
 		
+		ArrayList<Double> coordV4 = new ArrayList<Double>();
+		coordV4.add(5.);
+		coordV4.add(5.);
+		Variable v4 = new Variable(coordV4);
+		listeVariable.add(v4);
+		
+		probleme2.run(listeVariable);
 	}
 
 }

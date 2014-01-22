@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
 
 /**
  * Classe principale du programme
@@ -24,10 +25,14 @@ public class MethodeKMeans {
 		try{
 			//Lecture du nom de ficheir contenant les données sources
 			System.out.println("Nom du fichier contenant les données sources");
-			String fichier = new String();
-			Scanner sc = new Scanner();
-			fichier = sc.next();
+			String adresseFichier = new String();
 			
+			Scanner sc = new Scanner(adresseFichier);
+			
+			adresseFichier = sc.next();
+			
+			
+			sc.close();
 			 
 		}
 		catch(IOException e){
