@@ -1,7 +1,19 @@
 import java.io.Console;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.util.Random;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.util.Random; 	
 
 import Exceptions.*;
 
@@ -163,5 +175,46 @@ public class Clustering{
 			System .out . println (e.getMessage());
 			return false ; 
 		}
+	}
+	
+	
+
+	
+	/**
+	 * Méthode pour afficher les differents cluster pour des variables de dimension 2.
+	 * Chaque point possède un couleur spécifique à son cluster.
+	 */
+	public void affichage(){
+		Random rand = new Random();
+	    JFrame frame = new JFrame("Points");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
+	    //On établit une liste des couleurs pour ne pas réutiliser la même
+	     LinkedList<Color> listeCouleur = new LinkedList<Color>();
+	    
+	    //On suppose que les variables sont de dimensions 2
+	    for (Cluster clust : listeCluster) {
+	    	//On choisit une couleur pour le cluster
+	    	Color randomColor;
+	    	do 
+	    	{ 
+	    		float r = rand.nextFloat();
+	    		float g = rand.nextFloat();
+	    		float b = rand.nextFloat();
+	    		randomColor = new Color(r, g, b);
+	    	} while (listeCouleur.contains(randomColor));
+	    	
+	    	
+			for (Variable var : clust.listeVariablesCluster) {
+				Point pt = new Point(var.getCoordonnees().get(0), var.getCoordonnees().get(1),randomColor);
+				frame.add(pt);
+			}
+		}
+	    
+	    
+	    frame.setSize(200, 200);
+	    frame.setLocationRelativeTo(null);
+	    frame.setVisible(true);
+		
 	}
 }
