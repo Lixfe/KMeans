@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Exceptions.ExceptionTailleVariables;
@@ -73,8 +74,9 @@ public class Test {
 		probleme2.run(listeVariable);*/
 		
 		//test de la lecture fichier
-		LectureFichier lf = new LectureFichier("C:\\donnees-kmeans1.txt");
-		ArrayList<Variable> rep = lf.toIntArray(2);
+		try{
+		LecteurFichier lf = new LecteurFichier("C:\\donnees-kmeans1.txt");
+		ArrayList<Variable> rep = lf.getVariables();
 		for (int i = 0; i < rep.size(); i++) {
 			System.out.print("Coordonnees de la varible "+i+" : ");
 			for (int j=0 ; j<rep.get(i).coordonnees.size() ; j++){
@@ -82,7 +84,10 @@ public class Test {
 			}
 			
 		}
-		
+		}
+		catch(IOException e){
+			System.out.println("Erreur lors de l'entrée du nom de fichier");
+		}
 	}
 
 }

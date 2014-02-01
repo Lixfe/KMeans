@@ -25,11 +25,11 @@ public class MethodeKMeans {
 	public static void main(String[] args) {
 		
 		try{
-			//lecture d'un fichier
-			LectureFichier lf = new LectureFichier("C:\\donnees-kmeans.txt");
+			//lecture du fichier et création de la liste des variables
+			LecteurFichier lf = new LecteurFichier("C:\\donnees-kmeans.txt");
 			
 			//on place les données lues dans le fichier dans une liste de variables (le 2 correspond à la dimension des variables)
-			ArrayList<Variable> donneesFichier = lf.toIntArray(2);
+			ArrayList<Variable> donneesFichier = lf.getVariables();
 			
 			//on initialise le probleme avec une distance
 			Similarite sim = new DistanceEuclidienne()  ;
@@ -44,9 +44,9 @@ public class MethodeKMeans {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*catch(IOException e){
+		catch(IOException e){
 			System.out.println("Erreur lors de l'entrée du nom de fichier");
-		}*/
+		}
 		finally {
 			System.out.println("fini !");
 		}

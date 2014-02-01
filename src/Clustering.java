@@ -1,14 +1,8 @@
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Insets;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -162,6 +156,13 @@ public class Clustering{
 			System.out.println("");
 		}
 		
+		//Si les variables sont de dimensions 2 on les affiche
+		if (listeVariables.get(0).getCoordonnees().size()==2)
+		{
+			affichage();
+		}
+
+		
 		System.out.println("resultat reallocation : il y a eu du changement ? "+changement);
 		Scanner reader = new Scanner(System.in);
 		
@@ -205,14 +206,16 @@ public class Clustering{
 	    	} while (listeCouleur.contains(randomColor));
 	    	
 	    	
+	    	
 			for (Variable var : clust.listeVariablesCluster) {
 				Point pt = new Point(var.getCoordonnees().get(0), var.getCoordonnees().get(1),randomColor);
 				frame.add(pt);
+				
 			}
 		}
 	    
-	    
-	    frame.setSize(200, 200);
+
+	    frame.setSize(300, 300);
 	    frame.setLocationRelativeTo(null);
 	    frame.setVisible(true);
 		
